@@ -16,7 +16,7 @@ public class Vessel {
   @GeneratedValue
   private Long id;
   private String name;
-  private String vesselCountry;
+  private String country;
 
   @OneToMany(mappedBy = "vessel", fetch = FetchType.EAGER)
   private List<Position> positions = new ArrayList<>();
@@ -24,9 +24,9 @@ public class Vessel {
   public Vessel() {
   }
 
-  public Vessel(String name, String vesselCountry) {
+  public Vessel(String name, String country) {
     this.name = name;
-    this.vesselCountry = vesselCountry;
+    this.country = country;
   }
 
   public Long getId() {
@@ -45,12 +45,12 @@ public class Vessel {
     this.name = name;
   }
 
-  public String getVesselCountry() {
-    return vesselCountry;
+  public String getCountry() {
+    return country;
   }
 
-  public void setVesselCountry(String vesselCountry) {
-    this.vesselCountry = vesselCountry;
+  public void setVesselCountry(String country) {
+    this.country = country;
   }
 
   public List<Position> getPositions() {
@@ -62,7 +62,6 @@ public class Vessel {
   }
 
   public void addPosition(Position position) {
-    System.out.println(position.getId());
     this.positions.add(position);
   }
 

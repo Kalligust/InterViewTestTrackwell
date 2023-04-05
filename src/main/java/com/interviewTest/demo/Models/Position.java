@@ -1,5 +1,7 @@
 package com.interviewTest.demo.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -14,21 +16,24 @@ public class Position {
   @GeneratedValue
   private Long id;
 
+  @JsonIgnore
   @ManyToOne(cascade = CascadeType.ALL)
   @JoinColumn(name = "vessel_id", referencedColumnName = "id")
   private Vessel vessel;
 
-  private String name;
-  private int longitude;
-  private int latitude;
+  private String date;
+  private double longitude;
+  private double latitude;
+  private double speed;
 
   public Position() {
   }
 
-  public Position(String name, int longitude, int latitude) {
-    this.name = name;
+  public Position(String date, double longitude, double latitude, double speed) {
+    this.date = date;
     this.longitude = longitude;
     this.latitude = latitude;
+    this.speed = speed;
   }
 
   public Long getId() {
@@ -39,28 +44,44 @@ public class Position {
     this.id = id;
   }
 
-  public String getName() {
-    return name;
+  public Vessel getVessel() {
+    return vessel;
   }
 
-  public void setName(String name) {
-    this.name = name;
+  public void setVessel(Vessel vessel) {
+    this.vessel = vessel;
   }
 
-  public int getLongitude() {
+  public String getDate() {
+    return date;
+  }
+
+  public void setDate(String date) {
+    this.date = date;
+  }
+
+  public double getLongitude() {
     return longitude;
   }
 
-  public void setLongitude(int longitude) {
+  public void setLongitude(double longitude) {
     this.longitude = longitude;
   }
 
-  public int getLatitude() {
+  public double getLatitude() {
     return latitude;
   }
 
-  public void setLatitude(int latitude) {
+  public void setLatitude(double latitude) {
     this.latitude = latitude;
+  }
+
+  public double getSpeed() {
+    return speed;
+  }
+
+  public void setSpeed(double speed) {
+    this.speed = speed;
   }
 
   public void linkToVessel(Vessel v) {

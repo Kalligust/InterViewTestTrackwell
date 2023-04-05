@@ -8,4 +8,6 @@ public interface VesselRepository extends JpaRepository<Vessel, Long> {
 
   Vessel findByName(String name);
 
+  Vessel findByNameAndCountry(String name, String country);
+
 }
