@@ -1,6 +1,4 @@
-package com.interviewTest.demo.Position;
-
-import com.interviewTest.demo.Vessel.Vessel;
+package com.interviewTest.demo.Models;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;

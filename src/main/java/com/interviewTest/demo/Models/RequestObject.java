@@ -1,9 +1,4 @@
-package com.interviewTest.demo;
-
-import java.util.Date;
-import java.util.Map;
-
-import com.fasterxml.jackson.annotation.JsonProperty;
+package com.interviewTest.demo.Models;
 
 public class RequestObject {
 

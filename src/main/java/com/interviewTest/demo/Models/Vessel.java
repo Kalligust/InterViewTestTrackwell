@@ -1,9 +1,7 @@
-package com.interviewTest.demo.Vessel;
+package com.interviewTest.demo.Models;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import com.interviewTest.demo.Position.Position;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
