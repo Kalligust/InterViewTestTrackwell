@@ -84,6 +84,7 @@ public class Position {
     this.speed = speed;
   }
 
+  // Create reference to vessel that point is added to
   public void linkToVessel(Vessel v) {
     this.vessel = v;
   }

@@ -1,13 +1,22 @@
-package com.interviewTest.demo.Models;
+package com.interviewTest.demo.Http;
 
-public class RequestObject {
+import java.util.Date;
+
+public class ResponseObject {
 
   private Vessel vessel;
   private Position position;
 
+  public ResponseObject() {
+    this.vessel = new Vessel();
+    this.position = new Position();
+  }
+
   public class Vessel {
     private String name;
-    private String country;
+
+    public Vessel() {
+    }
 
     public String getName() {
       return name;
@@ -16,22 +25,17 @@ public class RequestObject {
     public void setName(String name) {
       this.name = name;
     }
-
-    public String getCountry() {
-      return country;
-    }
-
-    public void setCountry(String country) {
-      this.country = country;
-    }
-
   }
 
   public class Position {
     private String date;
+    private Date receivedDate;
     private double latitude;
     private double longitude;
-    private int speed;
+    private double speed;
+
+    public Position() {
+    }
 
     public String getDate() {
       return date;
@@ -39,6 +43,14 @@ public class RequestObject {
 
     public void setDate(String date) {
       this.date = date;
+    }
+
+    public Date getReceivedDate() {
+      return receivedDate;
+    }
+
+    public void setReceivedDate(Date receivedDate) {
+      this.receivedDate = receivedDate;
     }
 
     public double getLatitude() {
@@ -57,11 +69,11 @@ public class RequestObject {
       this.longitude = longitude;
     }
 
-    public int getSpeed() {
+    public double getSpeed() {
       return speed;
     }
 
-    public void setSpeed(int speed) {
+    public void setSpeed(double speed) {
       this.speed = speed;
     }
 

@@ -1,8 +1,11 @@
 package com.interviewTest.demo.Services;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.interviewTest.demo.Exceptions.RequestException;
 import com.interviewTest.demo.Models.Position;
 import com.interviewTest.demo.Models.Vessel;
 import com.interviewTest.demo.Repositories.VesselRepository;
@@ -15,11 +18,7 @@ public class VesselService {
   @Autowired
   private PositionService positionService;
 
-  public Vessel findByName(String name) {
-    return vesselRepo.findByName(name);
-  }
-
-  public Vessel findByNameAndCountry(String name, String country) {
+  public Optional<Vessel> findByNameAndCountry(String name, String country) {
     return vesselRepo.findByNameAndCountry(name, country);
   }
 
@@ -27,12 +26,17 @@ public class VesselService {
     return vesselRepo.save(v);
   }
 
-  public Vessel addPosition(Position p, String vesselName, String country) {
-    Position newPosition = positionService.save(p);
-    Vessel vessel = findByNameAndCountry(vesselName, country);
-    newPosition.linkToVessel(vessel);
-    vessel.addPosition(newPosition);
-    return save(vessel);
+  public void addPosition(Vessel vessel, Position newPosition) {
+    Optional<Vessel> retrievedVessel = findByNameAndCountry(vessel.getName(), vessel.getCountry());
+
+    retrievedVessel.ifPresentOrElse(v -> {
+      Position p = positionService.save(newPosition);
+      p.linkToVessel(v);
+      v.addPosition(p);
+      save(v);
+    }, () -> {
+      throw new RequestException("Vessel not found");
+    });
 
   }
 }
